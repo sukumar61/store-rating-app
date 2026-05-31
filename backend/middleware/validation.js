@@ -27,3 +27,11 @@ export const signupValidater=[
         .isLength({ max: 400 })
         .withMessage("Address cannot exceed 400 characters")
 ]
+export const loginValidater=[
+    body("email")
+    .notEmpty()
+    .withMessage("Email is required")
+    .isEmail()
+    .withMessage("Invalid email format")
+
+]

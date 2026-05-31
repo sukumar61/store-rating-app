@@ -1,8 +1,9 @@
 import express from "express"
-import { signup } from "../controllers/authController.js" 
-import { signupValidater } from "../middleware/validation.js"
+import { signup,login } from "../controllers/authController.js" 
+import { signupValidater,loginValidater } from "../middleware/validation.js"
 
 const authRouters=express.Router()
 
-authRouters.post("/",signupValidater,signup)
+authRouters.post("/signup",signupValidater,signup)
+authRouters.post("/login",loginValidater,login)
 export default authRouters
