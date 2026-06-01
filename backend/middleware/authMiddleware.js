@@ -1,5 +1,6 @@
 import jwttoken from "jsonwebtoken"
 export const authenticateUser=(req,res,next)=>{
+    console.log("Auth Middleware")
     try{
          const header=req.headers.authorization
          if(!header){
@@ -15,5 +16,4 @@ export const authenticateUser=(req,res,next)=>{
         return(res.status(401).json({message:"Invalid Token"}))
     }
 
-    next()
 }

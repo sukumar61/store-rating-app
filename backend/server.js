@@ -2,6 +2,8 @@ import express from "express"
 import pool from "./config/db.js"
 import userRoutes from "./routes/userRoutes.js"
 import authRouters from "./routes/authRoutes.js"
+import storeRouter from "./routes/storeRoutes.js"
+
 import {authenticateUser} from "./middleware/authMiddleware.js"
 import{authorizeRoles} from "./middleware/roleMiddleware.js"
 const app=express()
@@ -16,4 +18,7 @@ app.post("/profile",authenticateUser,authorizeRoles("ADMIN"),(req,res)=>{
 
 app.use("/auth",authRouters)
 app.use("/users",userRoutes)
+app.use("/stores",storeRouter)
+
+
 
