@@ -33,7 +33,18 @@ export const getStores=async (req,res)=>{
     try{
         let connection;
     connection=await pool.getConnection();
-    const store_details=await connection.query("select * from stores;")
+    const store_details=await connection.query(`
+            SELECT
+                s.id,
+                s.name,
+                s.email,
+                s.address,
+                ROUND(AVG(r.rating),1) AS average_rating
+            FROM stores s
+            LEFT JOIN ratings r
+            ON s.id = r.store_id
+            GROUP BY s.id,s.name,s.email,s.address
+        ;`)
     return res.status(200).json({store_details})
     }
     catch(err){
